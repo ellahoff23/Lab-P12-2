@@ -9,6 +9,10 @@ void pressEnterToContinue() {
     cin.get();
 }
 
+bool isLetter(char c) {
+    return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+}
+
 int main() {
     string filename;
     cout << "input file: ";
@@ -25,11 +29,15 @@ int main() {
     int charCount = 0;
     string word;
     while (file >> word) {
-        wordCount++;
+        bool hasLetter = false;
         for (char c : word) {
-            if (!isspace(c)) {
+            if (isLetter(c)) {
                 charCount++;
+                hasLetter = true;
             }
+        }
+        if (hasLetter) {
+            wordCount++;
         }
     }
 
